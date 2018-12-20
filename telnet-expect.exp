@@ -1,0 +1,33 @@
+#!/usr/bin/expect
+
+# If it all goes pear shaped the script will timeout after 10 seconds.
+set timeout 10
+# Set argument variables
+set from [lindex $argv 0]
+set domain [lindex $argv 1]
+set to [lindex $argv 2]
+
+# This spawns the telnet program and connects it to the variable name $domain
+spawn telnet $domain 25
+
+# Confirm valid telnet connection
+expect -re "220 .*"
+# Send hello
+send "helo hi\n"
+# Valid response
+expect -re "250 .*"
+send_user "THIS IS A VALID MAIL SERVER"
+# Set mail FROM
+send "mail from: <$from>\n"
+expect -re "250 .*"
+# Set mail TO, and submit status message for later grepping
+send "rcpt to: <$to>\n"
+expect {
+  -re "250 .*" {
+    send_user "THIS IS A VALID EMAIL ADDRESS"
+  }
+  -re "550 .*" {
+    send_user "THIS IS AN INVALID EMAIL ADDRESS"
+  }
+}
+send "quit\n"
