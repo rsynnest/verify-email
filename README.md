@@ -15,4 +15,8 @@
 
 ## Usage: 
 
+```bash
+FROM_EMAIL=me@example.com
+TO_EMAIL=someone@example.com
 verify-email.sh $FROM_EMAIL $TO_EMAIL
+```
