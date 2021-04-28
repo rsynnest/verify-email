@@ -11,7 +11,7 @@
 
 ## Installation
 
-git clone this repo
+`git clone https://github.com/rsynnest/verify-email`
 
 ## Usage: 
 
