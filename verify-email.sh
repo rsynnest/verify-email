@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This script and its buddy telnet-expect.exp will verify an email address
 # Usage: verify-email.sh fromaddress@ucdavis.edu toaddress@ucdavis.edu
-# You can lock the from address if by setting the FROM_EMAIL variable below
+# You can lock the from address by setting the FROM_EMAIL variable below
 
-# Script dependencies:
+# Package dependencies:
 # bash expect nslookup grep awk telnet
 
 FROM_EMAIL=$1
